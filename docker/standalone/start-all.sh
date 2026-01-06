@@ -2,7 +2,7 @@
 set -e
 
 # Service flags (default to true if not set)
-ENABLE_API="${HINDSIGHT_ENABLE_API:-true}"
+ENABLE_API="${HINDSIGHT_ENABLE_API:-false}"
 ENABLE_CP="${HINDSIGHT_ENABLE_CP:-true}"
 
 # Copy pre-cached PostgreSQL data if runtime directory is empty (first run with volume)

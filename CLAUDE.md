@@ -123,3 +123,75 @@ Required env vars:
 - `HINDSIGHT_API_LLM_PROVIDER`: openai, anthropic, gemini, groq, ollama, lmstudio
 - `HINDSIGHT_API_LLM_API_KEY`: Your API key
 - `HINDSIGHT_API_LLM_MODEL`: Model name (e.g., o3-mini, claude-sonnet-4-20250514)
+
+---
+
+## Claude Copilot
+
+This project uses [Claude Copilot](https://github.com/Everyone-Needs-A-Copilot/claude-copilot).
+
+**Full documentation:** `~/.claude/copilot/README.md`
+
+### Commands
+
+| Command | Purpose |
+|---------|---------|
+| `/protocol` | Start fresh work with Agent-First Protocol |
+| `/continue` | Resume previous work via Memory Copilot |
+| `/setup-copilot` | Universal setup (auto-detects context) |
+| `/update-project` | Update Claude Copilot in this project |
+| `/knowledge-copilot` | Build or link shared knowledge repository |
+
+### Capabilities
+
+| Capability | Tools | Purpose |
+|------------|-------|---------|
+| **Memory** | `initiative_*`, `memory_*` | Persist decisions, lessons, progress across sessions |
+| **Agents** | 13 specialists via `/protocol` | Expert guidance routed by task type |
+| **Knowledge** | `knowledge_search`, `knowledge_get` | Search company/product documentation |
+| **Skills** | `skill_search`, `skill_get` | Load expertise on demand |
+| **Tasks** | `prd_*`, `task_*`, `workproduct_*` | Structured work planning and tracking |
+
+### Agents
+
+| Agent | Domain |
+|-------|--------|
+| `ta` | Tech Architect - system design, task breakdown |
+| `me` | Engineer - code implementation |
+| `qa` | QA - testing, edge cases |
+| `sec` | Security - vulnerabilities, OWASP |
+| `doc` | Documentation - technical writing |
+| `do` | DevOps - CI/CD, infrastructure |
+| `sd` | Service Designer - customer journeys |
+| `uxd` | UX Designer - interaction design |
+| `uids` | UI Designer - visual design |
+| `uid` | UI Developer - component implementation |
+| `cw` | Copywriter - microcopy, voice |
+| `dm` | Data Migration - schema changes, data transformations |
+| `kc` | Knowledge Copilot - shared knowledge setup |
+
+### Configuration
+
+| Component | Status |
+|-----------|--------|
+| Memory | Workspace: `hindsight` |
+| Knowledge | Not configured |
+| Skills | Local: `.claude/skills/` |
+| Tasks | Workspace: `hindsight` |
+
+---
+
+## Session Management
+
+**Start:** `/protocol` - Activates Agent-First Protocol
+
+**Resume:** `/continue` - Loads from Memory Copilot
+
+**End:** Call `initiative_update` with completed tasks, decisions, lessons, and resume instructions
+
+---
+
+## Project-Specific Rules
+
+### No Time Estimates
+All plans, roadmaps, and task breakdowns MUST omit time estimates. Use phases, priorities, complexity ratings, and dependencies instead of dates or durations. See `~/.claude/copilot/CLAUDE.md` for full policy.
