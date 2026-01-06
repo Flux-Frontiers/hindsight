@@ -150,6 +150,33 @@ docker build -f docker/standalone/Dockerfile -t hindsight .
 docker build -f docker/standalone/Dockerfile --target api-only -t hindsight-api .
 ```
 
+### Publishing to GitHub Container Registry (GHCR)
+
+```bash
+# Authenticate to GHCR (one-time setup)
+# 1. Create a Personal Access Token at: https://github.com/settings/tokens/new
+#    with 'write:packages' and 'read:packages' scopes
+# 2. Login to GHCR:
+export CR_PAT=YOUR_TOKEN
+echo $CR_PAT | docker login ghcr.io -u YOUR_GITHUB_USERNAME --password-stdin
+
+# Build and push all images
+./scripts/docker-push-ghcr.sh all latest
+
+# Or build specific variants
+./scripts/docker-push-ghcr.sh standalone v0.2.1
+./scripts/docker-push-ghcr.sh api latest
+./scripts/docker-push-ghcr.sh cp latest
+```
+
+**Published images:**
+- `ghcr.io/flux-frontiers/hindsight:latest` - Full standalone (API + Control Plane)
+- `ghcr.io/flux-frontiers/hindsight-api:latest` - API only
+- `ghcr.io/flux-frontiers/hindsight-cp:latest` - Control Plane only
+
+**Making images public:**
+After pushing, visit https://github.com/orgs/flux-frontiers/packages and change visibility to public.
+
 ## Data & Persistence
 
 ### Memory Banks
