@@ -291,7 +291,7 @@ jobs:
       id: meta
       uses: docker/metadata-action@v5
       with:
-        images: ghcr.io/${{ github.repository_owner }}/${{ matrix.image_name }}
+        images: ghcr.io/flux-frontiers/${{ matrix.image_name }}
         tags: |
           type=semver,pattern={{version}},value=${{ steps.get_version.outputs.VERSION }}
           type=semver,pattern={{major}}.{{minor}},value=${{ steps.get_version.outputs.VERSION }}
@@ -355,7 +355,7 @@ jobs:
       run: helm package helm/hindsight --destination ./helm-packages
 
     - name: Push to GHCR OCI
-      run: helm push helm-packages/*.tgz oci://ghcr.io/${{ github.repository_owner }}/charts
+      run: helm push helm-packages/*.tgz oci://ghcr.io/flux-frontiers/charts
 
     - name: Upload artifacts
       uses: actions/upload-artifact@v4
